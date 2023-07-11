@@ -72,7 +72,7 @@ public class HomeWork3 {
 
     public static void addOrSubtractAndPrint(int initValue, int delta, boolean increment) {
         System.out.println("increment = " + increment);
-        if (increment == true) {
+        if (increment) {
             System.out.println("result =" + (initValue + delta));
         } else {
             System.out.println("result =" + (initValue - delta));
