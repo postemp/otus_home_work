@@ -11,23 +11,18 @@ public class HomeWork3 {
 
         switch (result) {
             case 1:
-                // 1 task
                 greetings();
                 break;
             case 2:
-                // 2 task
                 checkSign((int) (Math.random() * 10),  (int) (Math.random() * 5) - 10, (int) (Math.random() * 50)-10);
                 break;
             case 3:
-                // 3 task
                 selectColor();
                 break;
             case 4:
-                // 4 task
                 compareNumbers();
                 break;
             case 5:
-                // 5 task
                 addOrSubtractAndPrint((int) (Math.random() * 5) + 10, (int) (Math.random() * 5) + 10, Math.random() < 0.5);
                 break;
             default:
