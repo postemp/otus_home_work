@@ -14,7 +14,7 @@ public class hw5Extended {
         System.out.println(Arrays.toString(sumArrayElements(multiDimensionArr)));
 
         // 2 задание Найти середину между элементами массива
-        System.out.println(findingMiddle(new int[]{1, 1, 1, 3}));
+        System.out.println(findingMiddle(new int[]{1, 1, 3, 1, 4}));
 
         // 3 задание Проверить, что все элементы идут в порядке убывания или возрастания
         Scanner scanner = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class hw5Extended {
         System.out.println( Arrays.toString(array) +"  "+ checkingIfIncreasing(array,whatToDo ));
 
         // 4 задание Переворачиваем массив
-        System.out.println("Переворачиваем массив "+Arrays.toString(revertArr(new int[]{1, 2, 3, 4, 5, 6, -10})));
+        System.out.println("Переворачиваем массив " + Arrays.toString(revertArr(new int[]{1, 2, 3, 4, 5, 6, -10})));
     }
 
     public static int[] sumArrayElements(int[][] multiDimArr) {
@@ -72,7 +72,26 @@ public class hw5Extended {
     }
 
     public static String findingMiddle(int[] arr) {
-        return "Пока не решил задание";
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        if ( (sum % 2) != 0 ) {
+            return "суммы левой и правой части не равны, точки нет";
+        } else {
+            int halfSum = sum / 2;
+            int temp = 0;
+            for (int i = 0; i < arr.length; i++) {
+                temp += arr[i];
+//                System.out.println("sum / 2=" + (sum / 2) + " temp=" + temp);
+                if (temp == sum / 2) {
+                    return "суммы левой и правой части равны, есть точка";
+                }
+            }
+        }
+        return "суммы левой и правой части не равны, точки нет";
+
     }
 
     public static String checkingIfIncreasing(int[] arr, int flag) {
@@ -102,9 +121,11 @@ public class hw5Extended {
     public static int[] revertArr(int[] arr) {
         int maxVal;
         int minVal;
-        int arrRevCounter = arr.length-1;
+        int arrRevCounter = arr.length - 1;
         for (int i = 0; i < arr.length; i++) {
-            if (i >= arrRevCounter) {break;}
+            if (i >= arrRevCounter) {
+                break;
+            }
             minVal = arr[i];
             maxVal = arr[arrRevCounter];
             arr[i] = maxVal;
@@ -112,7 +133,7 @@ public class hw5Extended {
             arrRevCounter--;
 //            System.out.println( Arrays.toString(arr));
         }
-        return  arr;
+        return arr;
 //
 //        int tempVal = arr.length-1;
 //        int[] arrOut = new int[arr.length];
