@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class hw5Extended {
+public class Hw5Extended {
     public static void main(String[] args) {
 
         // 1 задание Cуммирование элементов в массиве
