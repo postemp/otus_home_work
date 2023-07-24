@@ -41,7 +41,6 @@ public class Hw5Extended {
             }
         }
 
-
         // 4 задание Переворачиваем массив
         System.out.println("Переворачиваем массив " + Arrays.toString(revertArr(new int[]{1, 2, 3, 4, 5, 6, -10})));
     }
