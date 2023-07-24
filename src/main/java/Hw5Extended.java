@@ -14,14 +14,33 @@ public class Hw5Extended {
         System.out.println(Arrays.toString(sumArrayElements(multiDimensionArr)));
 
         // 2 задание Найти середину между элементами массива
-        System.out.println(findingMiddle(new int[]{1, 1, 3, 1, 4}));
+        if (findingMiddle(new int[]{1, 1, 3, 1, 5, 1})) {
+            System.out.println("суммы левой и правой части равны, точкa присутствует");
+        } else {
+            System.out.println("суммы левой и правой части не равны, точки нет");
+        }
 
         // 3 задание Проверить, что все элементы идут в порядке убывания или возрастания
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Вы хотите проверить массив на убывание (введите 1) или возрастание? (введите 2)");
-        int whatToDo = scanner.nextInt();
-        int[] array = new int[] {4,2,1,-2,-10};
-        System.out.println( Arrays.toString(array) +"  "+ checkingIfIncreasing(array,whatToDo ));
+        System.out.println("Вы хотите проверить массив на возрастание? (введите 'y') или на убывание? (любой другой символ)");
+        char whatToDo = scanner.next().charAt(0);
+        int[] array = new int[]{4, 2, 1, -2, -10}; // убывающий массив
+//        int[] array = new int[]{-4, -2, 4, 5, 10}; // возрастающий массив
+        System.out.print(Arrays.toString(array));
+        if (whatToDo == 'y' || whatToDo == 'Y') {
+            if (checkingIfIncreasing(array, whatToDo)) {
+                System.out.println(" Массив возрастает");
+            } else {
+                System.out.println(" Массив не возрастает");
+            }
+        } else {
+            if (checkingIfIncreasing(array, whatToDo)) {
+                System.out.println(" Массив  убывает");
+            } else {
+                System.out.println(" Массив не убывает");
+            }
+        }
+
 
         // 4 задание Переворачиваем массив
         System.out.println("Переворачиваем массив " + Arrays.toString(revertArr(new int[]{1, 2, 3, 4, 5, 6, -10})));
@@ -71,51 +90,44 @@ public class Hw5Extended {
         return newarr;
     }
 
-    public static String findingMiddle(int[] arr) {
+    public static boolean findingMiddle(int[] arr) {
         int sum = 0;
 
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
         }
-        if ( (sum % 2) != 0 ) {
-            return "суммы левой и правой части не равны, точки нет";
-        } else {
-            int halfSum = sum / 2;
-            int temp = 0;
-            for (int i = 0; i < arr.length; i++) {
-                temp += arr[i];
+        if ((sum % 2) != 0) {
+            return false;
+        }
+        int halfSum = sum / 2;
+        int temp = 0;
+        for (int i = 0; i < arr.length; i++) {
+            temp += arr[i];
 //                System.out.println("sum / 2=" + (sum / 2) + " temp=" + temp);
-                if (temp == sum / 2) {
-                    return "суммы левой и правой части равны, есть точка";
-                }
+            if (temp == sum / 2) {
+                return true;
             }
         }
-        return "суммы левой и правой части не равны, точки нет";
+        return false;
 
     }
 
-    public static String checkingIfIncreasing(int[] arr, int flag) {
-        if (flag == 2) { // проверяем, что массив возрастает
-            int oldVal = Integer.MIN_VALUE;
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i] < oldVal) {
-                    return "Массив не возрастает";
+    public static boolean checkingIfIncreasing(int[] arr, int flag) {
+        if (flag == 1) { // проверяем, что массив возрастает
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] < arr[i - 1]) {
+                    return false;
                 }
-                oldVal = arr[i];
             }
-            return "Массив возрастает";
-        } else if (flag == 1) {  // проверяем, что массив убывает
-            int oldValue = Integer.MAX_VALUE;
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i] > oldValue) {
-                    return "Массив не убывает";
-                }
-                oldValue = arr[i];
-            }
-            return "Массив убывает";
-        } else {
-            return "Введите цифру 1 или 2";
+            return true;
         }
+        // проверяем, что массив убывает
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[i - 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static int[] revertArr(int[] arr) {
