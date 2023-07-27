@@ -1,3 +1,5 @@
+package Hw5;
+
 import java.util.Arrays;
 
 public class Hw5Simple {
