@@ -10,7 +10,7 @@ public class Hw5Extended {
         int[][] multiDimensionArr = new int[][]{
                 {1, 2, 3, 4}
                 , {2, 2}
-                , {1, 1, 1, 1, 1}
+                , {1, 1, 1, 1, 1, 2}
                 , {2}
         };
         System.out.println(Arrays.toString(sumArrayElements(multiDimensionArr)));
@@ -45,12 +45,27 @@ public class Hw5Extended {
 
         // 4 задание Переворачиваем массив
         System.out.println("Переворачиваем массив " + Arrays.toString(revertArr(new int[]{1, 2, 3, 4, 5, 6, -10})));
+
     }
 
     public static int[] sumArrayElements(int[][] multiDimArr) {
-        int[] arrOfSum = new int[0];
-        int tempSum;
+
         int counter = 0;
+        int maxLength = 0; // максимальная длина массива, который будем возрващать
+        for (int i = 0; i < multiDimArr.length; i++) {
+            for (int j = 0; j < multiDimArr[i].length; j++) {
+                counter ++;
+            }
+            if (maxLength < counter) {
+                maxLength = counter;
+            }
+            counter = 0;
+        }
+//        System.out.println("maxLength = "+maxLength);
+        int[] arrOfSum = new int[maxLength];
+        int tempSum;
+        counter = 0;
+
 
         while (true) {
             tempSum = 0;
@@ -65,30 +80,10 @@ public class Hw5Extended {
             if (tempSum == 0) {
                 break;
             }
-            // call the method to add tempSum in arr
-            arrOfSum = addX(counter, arrOfSum, tempSum);
+            arrOfSum[counter] = tempSum;
             counter++;
         }
         return arrOfSum;
-    }
-
-    // этот метод я нашел в интернете:
-    public static int[] addX(int n, int arr[], int x) {
-        int i;
-
-        // create a new array of size n+1
-        int newarr[] = new int[n + 1];
-
-        // insert the elements from
-        // the old array into the new array
-        // insert all elements till n
-        // then insert x at n+1
-        for (i = 0; i < n; i++)
-            newarr[i] = arr[i];
-
-        newarr[n] = x;
-
-        return newarr;
     }
 
     public static boolean findingMiddle(int[] arr) {
