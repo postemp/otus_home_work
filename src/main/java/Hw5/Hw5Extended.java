@@ -49,12 +49,12 @@ public class Hw5Extended {
     }
 
     public static int[] sumArrayElements(int[][] multiDimArr) {
-
+//        ищем длину будущего массива, который будем возвращать
         int counter = 0;
-        int maxLength = 0; // максимальная длина массива, который будем возрващать
+        int maxLength = 0; // длина будущего массива
         for (int i = 0; i < multiDimArr.length; i++) {
             for (int j = 0; j < multiDimArr[i].length; j++) {
-                counter ++;
+                counter++;
             }
             if (maxLength < counter) {
                 maxLength = counter;
@@ -64,9 +64,8 @@ public class Hw5Extended {
 //        System.out.println("maxLength = "+maxLength);
         int[] arrOfSum = new int[maxLength];
         int tempSum;
-        counter = 0;
 
-
+//        суммируем и заполняем массив:
         while (true) {
             tempSum = 0;
             for (int j = 0; j < multiDimArr.length; j++) {
