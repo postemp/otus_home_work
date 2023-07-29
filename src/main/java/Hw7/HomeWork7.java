@@ -3,7 +3,7 @@ package Hw7;
 public class HomeWork7 {
     public static void main(String[] args) {
         System.out.println("сумма элементов, которые больше 0, равна "
-                + sumOfPositiveElements(new int[][]{{1, -2, 3, 4}, {1, -2, 3, 4, 5}, {1, 2}}));
+                + sumOfPositiveElements(new int[][]{{1, -2, 3, 4}, {1, -2, 3}, {1, 2}}));
         drawSquare(15);
 
         drawArr(new int[][]{
@@ -18,7 +18,7 @@ public class HomeWork7 {
 
         System.out.println("сумма элементов второй колонки = " + sumSecColElem(new int[][]{
                 {1, 2, 3, 4},
-                {1}
+                {2, 2}
         }));
     }
 
@@ -26,10 +26,9 @@ public class HomeWork7 {
         int sumOfElements = 0;
         for (int i = 0; i < twoDimArr.length; i++) {
             for (int j = 0; j < twoDimArr[i].length; j++) {
-                if (twoDimArr[i][j] < 0) {
-                    continue;
+                if (twoDimArr[i][j] >= 0) {
+                    sumOfElements += twoDimArr[i][j];
                 }
-                sumOfElements += twoDimArr[i][j];
             }
         }
         return sumOfElements;
