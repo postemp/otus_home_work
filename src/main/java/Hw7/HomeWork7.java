@@ -26,7 +26,7 @@ public class HomeWork7 {
         int sumOfElements = 0;
         for (int i = 0; i < twoDimArr.length; i++) {
             for (int j = 0; j < twoDimArr[i].length; j++) {
-                if (twoDimArr[i][j] >= 0) {
+                if (twoDimArr[i][j] > 0) {
                     sumOfElements += twoDimArr[i][j];
                 }
             }
