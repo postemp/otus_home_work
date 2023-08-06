@@ -1,7 +1,7 @@
-package Hw11;
-import Hw11.Animals.Cat;
-import Hw11.Animals.Dog;
-import Hw11.Animals.Horse;
+package hw11;
+import hw11.Animals.Cat;
+import hw11.Animals.Dog;
+import hw11.Animals.Horse;
 
 public class Hw11 {
     public static void main(String[] args) {

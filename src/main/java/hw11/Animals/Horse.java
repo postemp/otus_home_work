@@ -1,4 +1,4 @@
-package Hw11.Animals;
+package hw11.Animals;
 
 public class Horse extends Animal{
     float swimSpeed;
