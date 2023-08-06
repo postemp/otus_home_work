@@ -64,6 +64,4 @@ public class Box {
         }
         System.out.println("Коробка и так пустая, что вы собрались вытащить?");
     }
-
-
 }

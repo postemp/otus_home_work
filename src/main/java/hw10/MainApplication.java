@@ -17,7 +17,6 @@ public class MainApplication {
                 users[i].showUser();
             }
         }
-
         Box small = new Box(10,20,30, "White");
         small.info();
         small.removeItem();
@@ -29,6 +28,5 @@ public class MainApplication {
         small.close();
         small.removeItem();
         small.info();
-
     }
 }
