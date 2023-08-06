@@ -16,9 +16,9 @@ public class Animal {
 
 //  процедура возвращает время, затраченное на бег, и “понижает выносливость” животного.
     public float run(int distance) {
-        if (distance == 0) {
-            System.out.println("Зачем животному бегать на месте? :)");
-            return 0;
+        if (distance <= 0) {
+            System.out.println("Нельзя задавать отрицательные или нулевые значения");
+            return -1;
         }
         if (this.endurance <=0) {
             System.out.println(this.name+" не может бежать, т.к. устал");

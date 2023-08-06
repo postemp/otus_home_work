@@ -19,6 +19,10 @@ public class Dog extends Animal {
     //  процедура возвращает время, затраченное на плавание, и “понижает выносливость” животного.
     public float swim(int distance) {
         int endurMultiplier = 2;
+        if (distance <= 0) {
+            System.out.println("Нельзя задавать отрицательные или нулевые значения");
+            return -1;
+        }
         if (this.endurance <=0) {
             System.out.println(this.name+" не может плыть, т.к. устал");
             return -1;
