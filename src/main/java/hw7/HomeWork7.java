@@ -1,4 +1,4 @@
-package Hw7;
+package hw7;
 
 public class HomeWork7 {
     public static void main(String[] args) {
@@ -86,7 +86,7 @@ public class HomeWork7 {
                 }
             }
         }
-        if (flag == false) {
+        if (!flag) {
             return -1;
         }
         return sum;
