@@ -126,29 +126,13 @@ public class Hw5Extended {
     }
 
     public static int[] revertArr(int[] arr) {
-        int maxVal;
-        int minVal;
-        int arrRevCounter = arr.length - 1;
-        for (int i = 0; i < arr.length; i++) {
-            if (i >= arrRevCounter) {
-                break;
-            }
-            minVal = arr[i];
-            maxVal = arr[arrRevCounter];
-            arr[i] = maxVal;
-            arr[arrRevCounter] = minVal;
-            arrRevCounter--;
-//            System.out.println( Arrays.toString(arr));
+        int temp;
+        for (int i = 0; i < arr.length / 2; i++) {
+            temp = arr[arr.length - i-1];
+            arr[arr.length - i-1] = arr[i];
+            arr[i] = temp;
         }
         return arr;
-//
-//        int tempVal = arr.length-1;
-//        int[] arrOut = new int[arr.length];
-//        for (int i = 0; i < arr.length; i++) {
-//            arrOut[i] = arr[tempVal];
-//            tempVal --;
-//        }
-//        return arrOut;
     }
 }
 
