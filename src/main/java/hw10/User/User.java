@@ -1,4 +1,4 @@
-package Hw10.User;
+package hw10.User;
 
 
 public class User {

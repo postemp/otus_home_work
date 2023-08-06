@@ -1,10 +1,11 @@
-package Hw10.Box;
+package hw10.Box;
 
 import java.util.Arrays;
 
 public class Box {
     private String color;
-    private int[] size;
+
+    private int width, height, length;
     private boolean opened;
     private String item;
 
@@ -12,8 +13,10 @@ public class Box {
         this.color = color;
     }
 
-    public Box(int[] size, String color) {
-        this.size = size;
+    public Box(int width, int height, int length, String color) {
+        this.width = width;
+        this.height = height;
+        this.length = length;
         this.color = color;
     }
 
@@ -28,7 +31,7 @@ public class Box {
     }
 
     public void info() {
-        System.out.print("size = " + Arrays.toString(this.size) + " color = " + this.color + " ");
+        System.out.print("size = " + width +"x" + height + "x" + length + " color = " + this.color + " ");
         if (this.item != null) {
             System.out.println("В коробке лежит " + this.item);
             return;
@@ -41,7 +44,7 @@ public class Box {
             System.out.println("В коробке уже лежит " + this.item);
             return;
         }
-        if (this.opened == false) {
+        if (!this.opened) {
             System.out.println("Коробка закрыта, положить не можем");
             return;
         }
@@ -50,7 +53,7 @@ public class Box {
     }
 
     public void removeItem() {
-        if (this.opened == false) {
+        if (!this.opened) {
             System.out.println("Коробка закрыта, вытащить ничего не можем");
             return;
         }

@@ -1,7 +1,7 @@
-package Hw10;
+package hw10;
 
-import Hw10.User.User;
-import Hw10.Box.Box;
+import hw10.User.User;
+import hw10.Box.Box;
 
 public class MainApplication {
     public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class MainApplication {
             }
         }
 
-        Box small = new Box(new int[]{10,20,30}, "White");
+        Box small = new Box(10,20,30, "White");
         small.info();
         small.removeItem();
         small.addItem("кубик");
