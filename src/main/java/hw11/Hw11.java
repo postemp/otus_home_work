@@ -1,7 +1,7 @@
 package hw11;
-import hw11.Animals.Cat;
-import hw11.Animals.Dog;
-import hw11.Animals.Horse;
+import hw11.animals.Cat;
+import hw11.animals.Dog;
+import hw11.animals.Horse;
 
 public class Hw11 {
     public static void main(String[] args) {
@@ -16,11 +16,11 @@ public class Hw11 {
         Cat cat = new Cat("Персик",3, 200);
         cat.run(250);
         cat.info();
+        cat.swim(10);
         Dog dog = new Dog("Бобик", 3, 0.1f, 300);
         dog.info();
         System.out.println(dog.run(300));
         System.out.println(dog.swim(100));
         dog.info();
-
     }
 }
