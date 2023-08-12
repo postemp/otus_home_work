@@ -1,7 +1,5 @@
 package hw12;
 
-import java.util.Objects;
-
 public class Cat {
     private String name;
     private int appetite;
@@ -10,9 +8,29 @@ public class Cat {
     public Cat(String name, int appetite) {
         this.name = name;
         this.appetite = appetite;
+        this.fullness = false;
     }
 
-   public void eat(Plate plate){
+    public boolean getFullness(){
+        if (this.fullness) {
+            System.out.println("Кот " + this.name + " наелся");
+            return true;
+        }
+        System.out.println("Кот " + this.name + " голодный");
+        return false;
 
-   }
+    }
+
+    public void eat(Plate plate) {
+        if (this.fullness ) {
+            System.out.println("Кот " + this.name + " не хочет кушать");
+            return;
+        }
+        if (plate.eat(this.appetite)) {
+            this.fullness = true;
+            System.out.println("Кот " + this.name + " поел");
+            return;
+        }
+        System.out.println("Недостаточно еды для кота " + this.name);
+    }
 }
