@@ -1,7 +1,7 @@
 package hw12;
 
 public class Plate {
-    private int maxFood;
+    private final int maxFood;
     private int currentFood;
 
     public Plate(int maxFood) {
