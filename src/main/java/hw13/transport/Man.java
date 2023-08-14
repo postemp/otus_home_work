@@ -31,7 +31,6 @@ public class Man {
         this.transport = null;
     }
 
-
     public boolean go(int distance, Terrain terrain){
         if (this.transport != null ) {
             if(this.transport.go(distance, terrain)){

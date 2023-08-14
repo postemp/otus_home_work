@@ -4,5 +4,4 @@ public class AllTerrainVehicle extends Vehicles {
     public AllTerrainVehicle(int rangeOf) {
         super(rangeOf);
     }
-
 }
