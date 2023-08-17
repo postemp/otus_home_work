@@ -51,7 +51,6 @@ public class Hw15Extended {
     //    Реализуйте метод, принимающий в качестве аргумента список сотрудников и минимальный средний возраст, и
     //    проверяющий что средний возраст сотрудников превышает указанный аргумент;
     public static boolean ifMinAverAgeOlder(List<Employee> employeeList, Integer minAverAge) {
-//        List<String> names = new ArrayList<>();
         Integer realAverageAge = 0;
         Integer ageSum = 0;
         for (int i = 0; i < employeeList.size(); i++) {
