@@ -5,6 +5,7 @@ public class Animal {
     int runSpeed;
     int endurance;
     float swimSpeed;
+    int swimEndurMultiplier;
 
     public Animal(String name, int runSpeed, int endurance) {
         this.name = name;
@@ -12,11 +13,12 @@ public class Animal {
         this.endurance = endurance;
     }
 
-    public Animal(String name, int runSpeed, float swimSpeed, int endurance) {
+    public Animal(String name, int runSpeed, float swimSpeed, int endurance, int swimEndurMultiplier) {
         this.name = name;
         this.runSpeed = runSpeed;
         this.endurance = endurance;
         this.swimSpeed = swimSpeed;
+        this.swimEndurMultiplier = swimEndurMultiplier;
     }
 
     public void info() {
@@ -46,16 +48,9 @@ public class Animal {
 
     //  процедура возвращает время, затраченное на плавание, и “понижает выносливость” животного.
     public float swim(int distance) {
-        int endurMultiplier =0;
-        if (this.getClass().getSimpleName().equals("Horse")) {
-            endurMultiplier = 4;
-        } else if (this.getClass().getSimpleName().equals("Dog")) {
-            endurMultiplier = 2;
-        } else if (this.getClass().getSimpleName().equals("Cat")) {
-            System.out.println("Кот не умеет плавать");
-            return  -1;
-        } else {
-            System.out.println("Нет такого класса, обратитесь к разработчикам :)");
+        System.out.println("endurMultiplier = "+ this.swimEndurMultiplier);
+        if (this.swimEndurMultiplier <= 0) {
+            System.out.println(this.getClass().getSimpleName()+ " плавать не умеет");
             return -1;
         }
 
@@ -68,12 +63,12 @@ public class Animal {
             return -1;
         }
         float time = (float) distance / this.swimSpeed;
-        if ((this.endurance - distance * endurMultiplier) < 0) {
-            System.out.println(this.name + " проплыл " + (distance - (distance - this.endurance / endurMultiplier)) + " метров и устал");
+        if ((this.endurance - distance * swimEndurMultiplier) < 0) {
+            System.out.println(this.name + " проплыл " + (distance - (distance - this.endurance / swimEndurMultiplier)) + " метров и устал");
             this.endurance = 0;
             return -1;
         }
-        this.endurance = this.endurance - distance * endurMultiplier;
+        this.endurance = this.endurance - distance * swimEndurMultiplier;
         System.out.println(this.name + " проплыл " + distance + " метров за " + time + " секунд");
         return time;
     }

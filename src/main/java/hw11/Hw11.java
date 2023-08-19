@@ -5,7 +5,7 @@ import hw11.animals.Horse;
 
 public class Hw11 {
     public static void main(String[] args) {
-        Horse horse = new Horse("Сивка", 5, 0.5f, 4000);
+        Horse horse = new Horse("Сивка", 5, 0.5f, 5000);
         horse.info();
         horse.run(2000);
         horse.info();
