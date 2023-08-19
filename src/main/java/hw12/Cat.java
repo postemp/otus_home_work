@@ -11,12 +11,14 @@ public class Cat {
         this.fullness = false;
     }
 
+    public String getName (){
+        return this.name;
+    }
+
     public boolean getFullness(){
         if (this.fullness) {
-            System.out.println("Кот " + this.name + " наелся");
             return true;
         }
-        System.out.println("Кот " + this.name + " голодный");
         return false;
 
     }

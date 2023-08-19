@@ -10,11 +10,9 @@ public class Plate {
     }
 
     public void addFood(){
-        System.out.println("Доложили еды в тарелку");
         this.currentFood = this.maxFood;
     }
     public int getFood(){
-        System.out.println("В тарелке осталось " + this.currentFood  + " еды");
         return this.currentFood;
     }
 

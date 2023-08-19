@@ -11,28 +11,37 @@ public class Main {
         cats[3] = new Cat("Ушастик", 10);
 
 
-        plate.getFood();
+        System.out.println("В тарелке осталось "+plate.getFood() + " еды");
 //         кормим котов
         for (int i = 0; i < cats.length; i++) {
             cats[i].eat(plate);
-            plate.getFood();
+            System.out.println("В тарелке осталось "+plate.getFood() + " еды");
         }
 
 //        смотрим, все ли наелись?
         for (int i = 0; i < cats.length; i++) {
-            cats[i].getFullness();
+            if (cats[i].getFullness()) {
+                System.out.println("Кот " + cats[i].getName() + " наелся");
+            } else {
+                System.out.println("Кот " + cats[i].getName()  + " голодный");
+            }
         }
 
         // всем не хватило, добавляем еды
+        System.out.println("Доложили еды в тарелку");
         plate.addFood();
 
         for (int i = 0; i < cats.length; i++) {
             cats[i].eat(plate);
-            plate.getFood();
+            System.out.println("В тарелке осталось "+plate.getFood() + " еды");
         }
 
         for (int i = 0; i < cats.length; i++) {
-            cats[i].getFullness();
+            if (cats[i].getFullness()) {
+                System.out.println("Кот " + cats[i].getName() + " наелся");
+            } else {
+                System.out.println("Кот " + cats[i].getName()  + " голодный");
+            }
         }
     }
 }
