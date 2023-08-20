@@ -8,17 +8,13 @@ public class Man {
     private Transport transport;
     private int endurance; // км, которые способен пройти человек
 
-    public Man(String name, Transport transport, int endurance) {
-        this.name = name;
-        this.transport = transport;
-        this.endurance = endurance;
-    }
 
     public Man(String name, int endurance) {
         this.name = name;
         this.transport = null;
         this.endurance = endurance;
     }
+
 
     public boolean getOn(Transport transport){
         this.transport = transport;
@@ -33,10 +29,7 @@ public class Man {
 
     public boolean go(int distance, Terrain terrain){
         if (this.transport != null ) {
-            if(this.transport.go(distance, terrain)){
-                return true;
-            };
-            return false;
+            return this.transport.go(distance, terrain);
         }
 //        идет пешком, если не сели на транспорт
         if (this.endurance <= 0) {
@@ -54,7 +47,7 @@ public class Man {
 
     public void transportInfo(){
         if (this.transport == null) {
-            System.out.println("Man goes on foot, endurance = "+ this.endurance);
+            System.out.println("Человек не сел на транспорт, endurance = "+ this.endurance);
             return;
         }
         System.out.println("transport is " + this.transport.getClass().getSimpleName() + " range of " + this.transport.getRangeOf());

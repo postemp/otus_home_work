@@ -1,5 +1,4 @@
 package hw13.transport;
-
 public enum Terrain {
     FOREST( "Дремучий лес"),
     PLAIN( "Равнина"),
