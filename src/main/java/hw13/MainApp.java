@@ -14,17 +14,19 @@ public class MainApp {
 
         vasya.go(20, Terrain.FOREST);
 
+        hw13.transport.AllTerrainVehicle ATV =new hw13.transport.AllTerrainVehicle(60);
 
-//
-//        vasya.getOn(ATV);
+        vasya.getOn(ATV);
         vasya.go(20, Terrain.FOREST);
-        vasya.go(10, Terrain.FOREST);
+
+        vasya.transportInfo();
         vasya.getOn(car);
-        System.out.println(vasya.go(4000, Terrain.PLAIN));
+
+        System.out.println(vasya.go(40, Terrain.PLAIN));
         car.showLeftRangeOf();
+
+        vasya.getOff();
         System.out.println(vasya.go(4, Terrain.PLAIN));
 
-
-//        System.out.println(ATV.getTerrainDescr());
     }
 }
