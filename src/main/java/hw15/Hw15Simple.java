@@ -18,16 +18,16 @@ public class Hw15Simple {
         System.out.println(arrLst);
     }
 
-    public static List makingArrayList(int min, int max) {
+    public static List<Integer> makingArrayList(int min, int max) {
         List<Integer> arrList = new ArrayList<>();
-        for (int i = min; i <= max; i++) {
+        for (int i = max; i > min-1; i--) {
             arrList.add(i);
         }
         return arrList;
     }
 
-    public static Integer sumOfElements (List<Integer> arrayLst) {
-        Integer sum = 0;
+    public static int sumOfElements (List<Integer> arrayLst) {
+        int sum = 0;
         for(Integer i : arrayLst) { // так можно или все таки итератор нужен?
             if (i > 5) {
                 sum += i;
@@ -36,15 +36,15 @@ public class Hw15Simple {
         return sum;
     }
 
-    public static void replaceEveryElemnt(Integer number, List arrLst) {
+    public static void replaceEveryElemnt(Integer number, List<Integer> arrLst) {
         for (int i = 0; i < arrLst.size(); i++) {
             arrLst.set(i,number);
         }
     }
 
-    public static void sumEveryElemnt (Integer number, List arrLst) {
+    public static void sumEveryElemnt (Integer number, List<Integer> arrLst) {
         for (int i = 0; i < arrLst.size(); i++) {
-            arrLst.set(i,((Integer)arrLst.get(i) + number));
+            arrLst.set(i,arrLst.get(i) + number);
         }
     }
 }
