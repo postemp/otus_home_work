@@ -8,7 +8,7 @@ public class Hw15Simple {
     public static void main(String[] args) {
         System.out.println(makingArrayList(1, 10));
 
-        ArrayList<Integer> arrLst = new ArrayList(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        List<Integer> arrLst = new ArrayList(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
         System.out.println(sumOfElements(arrLst));
 
         replaceEveryElemnt(123, arrLst);

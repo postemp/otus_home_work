@@ -65,8 +65,8 @@ public class Hw15Extended {
     //    Реализуйте метод, принимающий в качестве аргумента список сотрудников, и возвращающий ссылку на самого
     //    молодого сотрудника.
     public static Employee theYoungestEmployee(List<Employee> employeeList) {
-        Integer youngestAge = employeeList.get(0).getAge();
-        Integer youngestAgeIndex = 0;
+        int youngestAge = employeeList.get(0).getAge();
+        int youngestAgeIndex = 0;
         for (int i = 1; i < employeeList.size(); i++) {
             if ( youngestAge > employeeList.get(i).getAge() ) {
                 youngestAge = employeeList.get(i).getAge();
