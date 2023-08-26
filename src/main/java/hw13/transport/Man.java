@@ -6,7 +6,7 @@ import hw13.transport.Transport;
 public class Man {
     private String name;
     private Transport transport;
-    private int endurance; // км, которые способен пройти человек
+    static int endurance; // км, которые способен пройти человек
 
 
     public Man(String name, int endurance) {
@@ -14,7 +14,6 @@ public class Man {
         this.transport = null;
         this.endurance = endurance;
     }
-
 
     public boolean getOn(Transport transport){
         this.transport = transport;
@@ -47,9 +46,9 @@ public class Man {
 
     public void transportInfo(){
         if (this.transport == null) {
-            System.out.println("Человек не сел на транспорт, endurance = "+ this.endurance);
+            System.out.println("Человек не сел на транспорт, осталось сил: "+ this.endurance);
             return;
         }
-        System.out.println("transport is " + this.transport.getClass().getSimpleName() + " range of " + this.transport.getRangeOf());
+        System.out.println("Транспорт: " + this.transport.getClass().getSimpleName() + " осталось бензина на  " + this.transport.getRangeOf() + " км");
     }
 }
