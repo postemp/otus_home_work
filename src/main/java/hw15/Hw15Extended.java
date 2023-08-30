@@ -25,7 +25,6 @@ public class Hw15Extended {
         System.out.println("Cредний возраст сотрудников превышает указанный аргумент:" + ifMinAverAgeOlder(empLst, 35));
 
         System.out.println("Cамый младший сотрудник:" + theYoungestEmployee(empLst).getName() );
-
     }
 
     //    Реализуйте метод, принимающий в качестве аргумента список сотрудников, и возвращающий список их имен;
