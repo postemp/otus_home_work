@@ -40,8 +40,7 @@ public class Hw15Extended {
     //        Реализуйте метод, принимающий в качестве аргумента список сотрудников и минимальный возраст, и
     //        возвращающий список сотрудников, возраст которых больше либо равен указанному аргументу
     public static List<Employee> getBiggerAgeList(List<Employee> employeeList, Integer ageLimit) {
-//        List<String> names = new ArrayList<>();
-        List<Employee> empBiggerAgeLst = new ArrayList();
+        List<Employee> empBiggerAgeLst = new ArrayList<Employee>();
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getAge() >= ageLimit) {
                 empBiggerAgeLst.add(employeeList.get(i));
