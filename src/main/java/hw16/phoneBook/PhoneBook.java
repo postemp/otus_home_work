@@ -1,44 +1,44 @@
 package hw16.phoneBook;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PhoneBook {
-    private static HashMap<String, ArrayList> phoneBook = new HashMap<String, ArrayList>();
+    private final Map<String, ArrayList<String>> phoneBook = new HashMap<>();
 
-    public static void add(String name, String phone) {
+    public PhoneBook() {
+    }
+
+    public void add(String name, String phone) {
         if (phoneBook.containsKey(name)) {
-            ArrayList<String> strTemp = new ArrayList<>();
-            strTemp.addAll(phoneBook.get(name));
-            strTemp.add(phone);
-            phoneBook.put(name, strTemp);
-            return;
+            if (phoneBook.get(name).contains(phone)) {
+                System.out.println("Такой номер у " + name + " уже записан");
+                return;
+            }
+            phoneBook.get(name).add(phone);
+        } else {
+            phoneBook.put(name, new ArrayList<>(List.of(phone)));
         }
-        phoneBook.put(name, new ArrayList<String>(Arrays.asList(phone)));
     }
 
-    public static String find(String name) {
-        if (!phoneBook.containsKey(name)) {
-            return "имени \"" +name+ "\" в записной книге нет";
-        }
-        String strTemp = "";
-        for (Object o : phoneBook.get(name)) {
-            strTemp += o.toString() + "; ";
-        }
-        return strTemp;
+    public List<String> find(String name) {
+//        if (!phoneBook.containsKey(name)) {
+//            System.out.println("имени \"" +name+ "\" в записной книге нет");
+//            throw new RuntimeException("Ошибка, имени \"" +name+ "\" в записной книге нет");
+//        }
+        return phoneBook.get(name);
     }
 
-    public static String containsPhoneNumber(String phone) {
-        String retString = "";
-        for (Map.Entry<String, ArrayList> set : phoneBook.entrySet()) {
+    public boolean containsPhoneNumber(String phone) {
+        for (Map.Entry<String, ArrayList<String>> set : phoneBook.entrySet()) {
             for (Object o : set.getValue()) {
                 if (o.toString().equals(phone)) {
-                    retString += set.getKey() + "; ";
+                    return true;
                 }
             }
         }
-        return retString;
+        return false;
     }
 }
