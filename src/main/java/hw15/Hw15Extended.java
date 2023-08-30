@@ -1,12 +1,11 @@
 package hw15;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Hw15Extended {
     public static void main(String[] args) {
-        List<Employee> empLst = new ArrayList(10);
+        List<Employee> empLst = new ArrayList<Employee>(10);
         empLst.add(new Employee("Саша", 45));
         empLst.add(new Employee("Миша", 13));
         empLst.add(new Employee("Паша", 40));
@@ -18,9 +17,10 @@ public class Hw15Extended {
         empLst.add(new Employee("Sasha", 30));
         empLst.add(new Employee("Gena", 30));
         empLst.add(new Employee("Vovka", 30));
+
         System.out.println(getNames(empLst));
 
-        System.out.println(getBiggerAgeNames(empLst, 40));
+        System.out.println(getNames(getBiggerAgeList(empLst, 40)));
 
         System.out.println("Cредний возраст сотрудников превышает указанный аргумент:" + ifMinAverAgeOlder(empLst, 35));
 
@@ -31,28 +31,28 @@ public class Hw15Extended {
     //    Реализуйте метод, принимающий в качестве аргумента список сотрудников, и возвращающий список их имен;
     public static List<String> getNames(List<Employee> employeeList) {
         List<String> names = new ArrayList<>();
-        Iterator<Employee> iter = employeeList.iterator();
-        while (iter.hasNext()) {
-            names.add(iter.next().getName());
+        for (Employee employee : employeeList){
+            names.add(employee.getName());
         }
         return names;
     }
 
     //        Реализуйте метод, принимающий в качестве аргумента список сотрудников и минимальный возраст, и
     //        возвращающий список сотрудников, возраст которых больше либо равен указанному аргументу
-    public static List<String> getBiggerAgeNames(List<Employee> employeeList, Integer ageLimit) {
-        List<String> names = new ArrayList<>();
+    public static List<Employee> getBiggerAgeList(List<Employee> employeeList, Integer ageLimit) {
+//        List<String> names = new ArrayList<>();
+        List<Employee> empBiggerAgeLst = new ArrayList();
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getAge() >= ageLimit) {
-                names.add(employeeList.get(i).getName());
+                empBiggerAgeLst.add(employeeList.get(i));
             }
         }
-        return names;
+        return empBiggerAgeLst;
     }
 
     //    Реализуйте метод, принимающий в качестве аргумента список сотрудников и минимальный средний возраст, и
     //    проверяющий что средний возраст сотрудников превышает указанный аргумент;
-    public static boolean ifMinAverAgeOlder(List<Employee> employeeList, Integer minAverAge) {
+    public static boolean ifMinAverAgeOlder(List<Employee> employeeList, int minAverAge) {
         int realAverageAge = 0;
         int ageSum = 0;
         for (int i = 0; i < employeeList.size(); i++) {
@@ -65,14 +65,12 @@ public class Hw15Extended {
     //    Реализуйте метод, принимающий в качестве аргумента список сотрудников, и возвращающий ссылку на самого
     //    молодого сотрудника.
     public static Employee theYoungestEmployee(List<Employee> employeeList) {
-        int youngestAge = employeeList.get(0).getAge();
-        int youngestAgeIndex = 0;
+        Employee youngest = employeeList.get(0);
         for (int i = 1; i < employeeList.size(); i++) {
-            if ( youngestAge > employeeList.get(i).getAge() ) {
-                youngestAge = employeeList.get(i).getAge();
-                youngestAgeIndex = i;
+            if ( youngest.getAge() > employeeList.get(i).getAge() ) {
+                youngest = employeeList.get(i);
             }
         }
-        return  employeeList.get(youngestAgeIndex);
+        return youngest;
     }
 }
