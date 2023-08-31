@@ -1,16 +1,10 @@
 package hw13.transport;
 
-import hw13.transport.Terrain;
-import hw13.transport.Transport;
-
 public class Man {
-    private String name;
     private Transport transport;
-    static int endurance; // км, которые способен пройти человек
+    int endurance; // км, которые способен пройти человек
 
-
-    public Man(String name, int endurance) {
-        this.name = name;
+    public Man(int endurance) {
         this.transport = null;
         this.endurance = endurance;
     }
@@ -22,33 +16,37 @@ public class Man {
     }
 
     public void getOff(){
-        System.out.println("Слезли с "  + this.transport.getClass().getSimpleName());
+        System.out.println("Вышли из "  + this.transport.getClass().getSimpleName());
         this.transport = null;
     }
 
-    public boolean go(int distance, Terrain terrain){
+    public boolean move(int distance, Terrain terrain){
         if (this.transport != null ) {
-            return this.transport.go(distance, terrain);
+            return this.transport.move(distance, terrain);
         }
 //        идет пешком, если не сели на транспорт
         if (this.endurance <= 0) {
             System.out.println("У человека кончились силы, идти дальше не может");
             return false;
         }
-        if ((this.endurance - distance) >= 0) {
-            this.endurance = this.endurance - distance;
-            System.out.println("Прошли пешком " + distance + " км");
-            return true;
+
+
+        if ((this.endurance - distance) < 0) {
+            System.out.println("Прошел " + (distance - (distance - this.endurance)) + " км и запас хода кончился");
+            this.endurance = 0;
+            return false;
         }
-        System.out.println( "У человека не хватает выносливости, что бы пройти это расстояние в "+ distance +"км , endurance = " + this.endurance);
-        return false;
+
+        this.endurance = this.endurance - distance;
+        System.out.println("Прошел " + distance + " км");
+        return true;
     }
 
     public void transportInfo(){
         if (this.transport == null) {
-            System.out.println("Человек не сел на транспорт, осталось сил: "+ this.endurance);
+            System.out.println("Человек не сел на транспорт, осталось сил на "+ this.endurance + " км");
             return;
         }
-        System.out.println("Транспорт: " + this.transport.getClass().getSimpleName() + " осталось бензина на  " + this.transport.getRangeOf() + " км");
+        System.out.println("Транспорт: " + this.transport.getClass().getSimpleName() + " запас хода на  " + this.transport.getRangeOf() + " км");
     }
 }

@@ -1,6 +1,6 @@
 package hw13.transport;
 
 public interface Transport {
-    boolean go(int rideDistance, Terrain terrain);
+    boolean move(int rideDistance, Terrain terrain);
     int getRangeOf();
 }

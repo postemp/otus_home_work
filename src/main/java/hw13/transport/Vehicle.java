@@ -11,22 +11,14 @@ public class Vehicle  {
         return this.rangeOf;
     }
 
-
-    public Terrain[] getTerrCanNotUse() {
-        return terrCanNotUse;
-    }
-
     public Vehicle(int rangeOf, Terrain[] terrCanNotUse) {
         this.rangeOf = rangeOf;
         this.terrCanNotUse = terrCanNotUse;
     }
 
-    public void showLeftRangeOf() {
-        System.out.println("Оставшийся запас хода y " + this.getClass().getSimpleName() + ": " + this.rangeOf + " km");
-    }
 
 
-    public boolean go(int rideDistance, Terrain terrain) {
+    public boolean move(int rideDistance, Terrain terrain) {
         System.out.println("Поехали по местности: " + terrain.getDescription());
         for (Terrain t : terrCanNotUse) {
             if (t.equals(terrain)) {
@@ -41,7 +33,7 @@ public class Vehicle  {
         }
 
         if ((this.rangeOf - rideDistance) < 0) {
-            System.out.println("Проехал " + (rideDistance - (rideDistance - this.rangeOf)) + " км и бензин кончился");
+            System.out.println("Проехал " + (rideDistance - (rideDistance - this.rangeOf)) + " км и запас хода кончился");
             this.rangeOf = 0;
             return false;
         }
@@ -50,6 +42,4 @@ public class Vehicle  {
         System.out.println("Проехал " + rideDistance + " км");
         return true;
     }
-
-
 }
