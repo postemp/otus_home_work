@@ -1,44 +1,36 @@
 package hw17.tree;
 
 public class Node {
-    private int value; // ключ узла
-    private Node leftChild; // Левый узел потомок
-    private Node rightChild; // Правый узел потомок
+    int value;
+    Node left;
+    Node right;
 
-    public void printNode() { // Вывод значения узла в консоль
-        System.out.println(" Выбранный узел имеет значение :" + value);
-    }
-
-    public int getValue() {
+    public int getValue(){
         return this.value;
     }
 
-    public void setValue(final int value) {
-        this.value = value;
+    public String getLeftNodeValue(){
+        if (this.left == null) {
+            return "null";
+        }
+        return this.left.toString();
     }
 
-    public Node getLeftChild() {
-        return this.leftChild;
+    public String getRightNodeValue(){
+        if (this.right == null) {
+            return "null";
+        }
+        return this.right.toString();
     }
-
-    public void setLeftChild(final Node leftChild) {
-        this.leftChild = leftChild;
-    }
-
-    public Node getRightChild() {
-        return this.rightChild;
-    }
-
-    public void setRightChild(final Node rightChild) {
-        this.rightChild = rightChild;
+    Node(){
     }
 
     @Override
     public String toString() {
         return "Node{" +
                 "value=" + value +
-                ", leftChild=" + leftChild +
-                ", rightChild=" + rightChild +
-                '}';
+                " left child=" + left +
+                " right child=" + right +
+                "}";
     }
 }

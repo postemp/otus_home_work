@@ -1,84 +1,88 @@
 package hw17.tree;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.*;
 
-public class Tree {
-    private Node rootNode; // корневой узел
+public class Tree implements SearchTree<Node>{
 
-    public Tree() { // Пустое дерево
-        rootNode = null;
-    }
+    private Node root;
+    private  Node foundElement;
+    private final List<Node> sortedList = new ArrayList<>();
 
-    public void insertNode(int value) { // метод вставки нового элемента
-        Node newNode = new Node(); // создание нового узла
-        newNode.setValue(value); // вставка данных
-        if (rootNode == null) { // если корневой узел не существует
-            rootNode = newNode;// то новый элемент и есть корневой узел
-        }
-        else { // корневой узел занят
-            Node currentNode = rootNode; // начинаем с корневого узла
-            Node parentNode;
-            while (true) // мы имеем внутренний выход из цикла
-            {
-                parentNode = currentNode;
-                if(value == currentNode.getValue()) {   // если такой элемент в дереве уже есть, не сохраняем его
-                    return;    // просто выходим из метода
-                }
-                else  if (value < currentNode.getValue()) {   // движение влево?
-                    currentNode = currentNode.getLeftChild();
-                    if (currentNode == null){ // если был достигнут конец цепочки,
-                        parentNode.setLeftChild(newNode); //  то вставить слева и выйти из методы
+    public void insertNode(int value) {
+        Node newNode = new Node();
+        newNode.value = value;
+        if (root == null){
+            root = newNode;
+            sortedList.add(root);
+        } else {
+            Node currentNode = root;
+            while (true) {
+                if (currentNode.value == value) {
+                    return;
+                } else if (currentNode.value > value) { // go left
+                    if (currentNode.left == null) {
+                        currentNode.left = newNode;
+                        sortedList.add(currentNode.left);
                         return;
                     }
-                }
-                else { // Или направо?
-                    currentNode = currentNode.getRightChild();
-                    if (currentNode == null) { // если был достигнут конец цепочки,
-                        parentNode.setRightChild(newNode);  //то вставить справа
-                        return; // и выйти
+                    currentNode = currentNode.left;
+                } else {                              // go right
+                    if (currentNode.right == null) {
+                        currentNode.right = newNode;
+                        sortedList.add(currentNode.right);
+                        return;
                     }
+                    currentNode = currentNode.right;
                 }
             }
         }
     }
 
-    public void printTree() { // метод для вывода дерева в консоль
-        Stack globalStack = new Stack(); // общий стек для значений дерева
-        globalStack.push(rootNode);
-        int gaps = 32; // начальное значение расстояния между элементами
-        boolean isRowEmpty = false;
-        String separator = "-----------------------------------------------------------------";
-        System.out.println(separator);// черта для указания начала нового дерева
-        while (isRowEmpty == false) {
-            Stack localStack = new Stack(); // локальный стек для задания потомков элемента
-            isRowEmpty = true;
-
-            for (int j = 0; j < gaps; j++)
-                System.out.print(' ');
-            while (globalStack.isEmpty() == false) { // покуда в общем стеке есть элементы
-                Node temp = (Node) globalStack.pop(); // берем следующий, при этом удаляя его из стека
-                if (temp != null) {
-                    System.out.print(temp.getValue()); // выводим его значение в консоли
-                    localStack.push(temp.getLeftChild()); // соохраняем в локальный стек, наследники текущего элемента
-                    localStack.push(temp.getRightChild());
-                    if (temp.getLeftChild() != null ||
-                            temp.getRightChild() != null)
-                        isRowEmpty = false;
-                }
-                else {
-                    System.out.print("__");// - если элемент пустой
-                    localStack.push(null);
-                    localStack.push(null);
-                }
-                for (int j = 0; j < gaps * 2 - 2; j++)
-                    System.out.print(' ');
+    private void findByVarRecursive(int number, Node element) {
+        if (element != null) {
+            if (element.value == number){
+                foundElement = element;
+                return;
             }
-            System.out.println();
-            gaps /= 2;// при переходе на следующий уровень расстояние между элементами каждый раз уменьшается
-            while (localStack.isEmpty() == false)
-                globalStack.push(localStack.pop()); // перемещаем все элементы из локального стека в глобальный
+            findByVarRecursive(number, element.left);
+            findByVarRecursive(number, element.right);
         }
-        System.out.println(separator);// подводим черту
     }
 
+    public Node findByVal(int number) {
+        foundElement = null;
+        findByVarRecursive(number, root);
+        return foundElement;
+    }
+
+    private void findRecursive(Node elementToFind, Node node) {
+        if (node != null) {
+            if (node.equals(elementToFind)){
+                foundElement = node;
+                return;
+            }
+            findRecursive(elementToFind, node.left);
+            findRecursive(elementToFind, node.right);
+        }
+    }
+
+    public Node find(Node element){
+        foundElement = null;
+        findRecursive(element, root);
+        return foundElement;
+    }
+
+    public List<Node> getSortedList(){
+        List<Integer> rawList = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        int middleInd = rawList.size() / 2;
+
+        // создаем root элемент
+        this.insertNode(rawList.get(middleInd));
+//         добавляем все элементы
+        for(Integer val : rawList) {
+            this.insertNode(val);
+        }
+        return sortedList;
+    }
 }
