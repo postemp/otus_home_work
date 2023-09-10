@@ -31,7 +31,8 @@ public class Server {
     }
 
     public static void queryAndAnswer(Socket socket) throws IOException {
-        try {
+        try
+        {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             out.write("Введите два числа, потом операцию, которую нужно выполнить над ними,");
@@ -47,50 +48,48 @@ public class Server {
             out.flush();
             int operType = in.read();
             System.out.println((char) operType);
-            int result;
             try {
-                switch ((char) operType) {
-                    case '+':
-                        result = Integer.parseInt(first) + Integer.parseInt(second);
-                        break;
-                    case '-':
-                        result = Integer.parseInt(first) - Integer.parseInt(second);
-                        break;
-                    case '*':
-                        result = Integer.parseInt(first) * Integer.parseInt(second);
-                        break;
-                    case '/':
-                        result = Integer.parseInt(first) / Integer.parseInt(second);
-                        break;
-                    default:
-                        result = 0;
-                        throw new RuntimeException("Такой операции не найдено");
-                }
+                out.write(" Результат = " + calculate(first, second, operType) + " нажмите Enter для завершения\n");
             } catch (ArithmeticException e) {
-                out.write("Ошибка, деление на ноль невозможно, нажмите Enter для завершнеия " + e);
-                out.flush();
-                socket.close();
-                in.close();
-                out.close();
+                out.write("Ошибка, деление на ноль невозможно, нажмите Enter для завершнеия " + e+"\n");
                 return;
-            }  catch (RuntimeException e) {
-                out.write("Ошибка  "+e+", нажмите Enter для завершнеия ");
-                out.flush();
-                socket.close();
-                in.close();
-                out.close();
+            } catch (RuntimeException e) {
+                out.write("Ошибка  " + e + ", нажмите Enter для завершнеия \n");
                 return;
             }
-            System.out.println("result=" + result);
-            out.write(" Результат = " + result + " нажмите Enter для завершнеия\n");
+        } finally {
             out.flush();
             socket.close();
             in.close();
             out.close();
-        } finally {
-            socket.close();
-            in.close();
-            out.close();
         }
+    }
+
+    public static int calculate(String first, String second, int operType) {
+        int result;
+        try {
+            switch ((char) operType) {
+                case '+':
+                    result = Integer.parseInt(first) + Integer.parseInt(second);
+                    break;
+                case '-':
+                    result = Integer.parseInt(first) - Integer.parseInt(second);
+                    break;
+                case '*':
+                    result = Integer.parseInt(first) * Integer.parseInt(second);
+                    break;
+                case '/':
+                    result = Integer.parseInt(first) / Integer.parseInt(second);
+                    break;
+                default:
+                    result = 0;
+                    throw new RuntimeException("Такой операции не найдено");
+            }
+        } catch (ArithmeticException e) {
+            throw new RuntimeException("Ошибка, деление на ноль невозможно, нажмите Enter для завершнеия " + e);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Ошибка  " + e + ", нажмите Enter для завершнеия ");
+        }
+        return result;
     }
 }
