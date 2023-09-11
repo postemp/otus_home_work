@@ -30,7 +30,6 @@ public class MainApp {
                     }
                 }
         );
-
         Thread thread2 = new Thread(
                 new Runnable() {
                     @Override
@@ -41,7 +40,6 @@ public class MainApp {
                     }
                 }
         );
-
         Thread thread3 = new Thread(
                 new Runnable() {
                     @Override
@@ -52,7 +50,6 @@ public class MainApp {
                     }
                 }
         );
-
         Thread thread4 = new Thread(
                 new Runnable() {
                     @Override
