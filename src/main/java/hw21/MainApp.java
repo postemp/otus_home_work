@@ -20,50 +20,19 @@ public class MainApp {
 
     public static void parallelFilling() {
         double[] dArray = new double[10_000_000];
-        Thread thread1 = new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = 0; i < dArray.length / 2 / 2; i++) {
-                            dArray[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
+
+        for (int j = 0; j < 4; j++) {
+            int counter = j;
+            new Thread(
+                    () -> {
+                        int inc;
+                        for (int i = 0; i < dArray.length ; i = i + 4 ) {
+                            inc = i + counter;
+                            dArray[inc] = 1.14 * Math.cos(inc) * Math.sin(inc * 0.2) * Math.cos(inc / 1.2);;
                         }
                     }
-                }
-        );
-        Thread thread2 = new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = dArray.length / 2 / 2 + 1; i < dArray.length / 2; i++) {
-                            dArray[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
-                        }
-                    }
-                }
-        );
-        Thread thread3 = new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = dArray.length / 2 + 1; i < dArray.length / 2  + dArray.length / 2 / 2; i++) {
-                            dArray[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
-                        }
-                    }
-                }
-        );
-        Thread thread4 = new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = dArray.length / 2 + dArray.length / 2 / 2 + 1; i < dArray.length; i++) {
-                            dArray[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
-                        }
-                    }
-                }
-        );
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        thread4.start();
+            ).start();
+        }
     }
 }
 
