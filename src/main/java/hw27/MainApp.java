@@ -15,7 +15,7 @@ public class MainApp {
         Box<Apple> appleBox = new Box<>(Arrays.asList(apple3, apple2));
 //        Box<Apple> appleBox = new Box();
 
-        appleBox.fruitAdd(apple1);
+//        appleBox.fruitAdd(apple1);
 
 
         System.out.println("Вес ящика с яблоками = " + appleBox.weight(apple1));
