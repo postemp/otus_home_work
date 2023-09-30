@@ -2,6 +2,7 @@ package hw27.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Box<T extends Fruit> {
 
@@ -40,10 +41,15 @@ public class Box<T extends Fruit> {
     String showName(){
         return this.fruitList.get(0).getClass().getSimpleName();
     }
+
+    public Fruit whatClass(){
+        return this.fruitList.get(0);
+    }
     public void move(Box anotherBox, int quantity) {
         System.out.println("Переносим из "+anotherBox.showName()+ " в " + this.showName());
 //        System.out.println(anotherBox.showName());
 //        System.out.println(this.showName());
+        System.out.println("Этот класс фруктов "+ this.showName() + " является потомком "+ anotherBox.showName() +" : "+ anotherBox.whatClass().getClass());
         if (!anotherBox.showName().equals(this.showName()) ) {
             System.out.println("fruits are not equal");
             return;

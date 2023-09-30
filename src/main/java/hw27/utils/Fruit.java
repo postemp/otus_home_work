@@ -1,5 +1,8 @@
 package hw27.utils;
 
-public abstract class Fruit {
-    public abstract double getWeight();
+public  class Fruit {
+
+    public double getWeight() {
+        return 0;
+    }
 }

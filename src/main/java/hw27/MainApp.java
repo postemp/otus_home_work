@@ -2,7 +2,7 @@ package hw27;
 
 import hw27.utils.Apple;
 import hw27.utils.Box;
-import hw27.utils.MixedFruit;
+import hw27.utils.Fruit;
 import hw27.utils.Orange;
 
 import java.util.ArrayList;
@@ -12,24 +12,26 @@ public class MainApp {
 
     public static void main(String[] args) {
 
-        Box<Orange> orangeBox = new Box(new ArrayList<Orange>(Arrays.asList(new Orange(), new Orange())));
-//        System.out.println(orangeBox.showName());
 
-        orangeBox.fruitAdd(new Orange());
+        Orange orange1 = new Orange();
+        Box<Orange> orangeBox = new Box(new ArrayList<Orange>(Arrays.asList(orange1, orange1)));
+
         System.out.println("Вес ящика с апельсинами = " + orangeBox.weight());
-
+//
+        Apple apple1 = new Apple();
         Box<Apple> appleBox1 = new Box();
-        Box<Apple> appleBox2 = new Box(new ArrayList<Apple>(Arrays.asList(new Apple(), new Apple(), new Apple())));
-        appleBox1.fruitAdd(new Apple());
+        appleBox1.fruitAdd(apple1);
+        Box<Apple> appleBox2 = new Box(new ArrayList<Apple>(Arrays.asList(apple1, apple1, apple1)));
 
-        Box<MixedFruit> fruitBox = new Box();
+        System.out.println("вес ящика с апельсинами orangeBox равен весу ящика с яблоками appleBox2: "+ appleBox2.compare(orangeBox));
 
-        System.out.println("Вес ящика с яблоками = " + appleBox2.weight());
+        System.out.println("Вес ящика с яблоками appleBox2 = " + appleBox2.weight());
         appleBox2.move(appleBox1, 5);
-        System.out.println("Вес ящика с яблоками = " + appleBox2.weight());
-//        System.out.println("вес ящика с апельсинами равен весу ящика с яблоками: "+ appleBox.compare(orangeBox));
+        System.out.println("Вес ящика с яблоками appleBox2 = " + appleBox2.weight());
+
         appleBox2.move(orangeBox, 2);
 
+        Box<Fruit> fruitBox = new Box();
     }
 
 
