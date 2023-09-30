@@ -1,4 +1,4 @@
-package ru_hw27.postemp.java.basic.hw27;
+package hw27.utils;
 
 public abstract class Fruit {
     public abstract double getWeight();

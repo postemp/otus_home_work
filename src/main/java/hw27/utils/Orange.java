@@ -1,6 +1,6 @@
-package ru_hw27.postemp.java.basic.hw27;
+package hw27.utils;
 
-public class Orange extends Fruit{
+public class Orange extends Fruit {
     private final double weight = 30;
 
     @Override

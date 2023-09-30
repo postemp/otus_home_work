@@ -1,4 +1,4 @@
-package ru_hw27.postemp.java.basic.hw27;
+package hw27.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,20 +37,16 @@ public class Box<T extends Fruit> {
         return fruit;
     }
 
-    public void move(Box anotherBox) {
-        fruitAdd((T) anotherBox.takeFromHere());
+    public void move(Box anotherBox, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            try {
+                fruitAdd((T) anotherBox.takeFromHere());
+            } catch (IndexOutOfBoundsException e) {
+//                System.out.println("Exception"+e.toString());
+                System.out.println("Количество перемещенных фруктов: " + i);
+                break;
+            }
+        }
     }
-//    public int move(int quantity) {
-//        for (int i = 0; i < quantity; i++) {
-//            try {
-//                T fruit = fruitList.remove(0);
-//            } catch (IndexOutOfBoundsException e) {
-//                System.out.println("sIndexOutOfBoundsException");
-//                return i;
-//            }
-//
-//        }
-//        return quantity;
-//    }
 
 }
