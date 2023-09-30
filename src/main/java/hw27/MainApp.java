@@ -12,7 +12,7 @@ public class MainApp {
     public static void main(String[] args) {
 
         Box<Orange> orangeBox = new Box(new ArrayList<Orange>(Arrays.asList(new Orange(), new Orange())));
-        System.out.println(orangeBox.showName());
+//        System.out.println(orangeBox.showName());
 
         orangeBox.fruitAdd(new Orange());
         System.out.println("Вес ящика с апельсинами = " + orangeBox.weight());
