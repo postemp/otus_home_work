@@ -37,7 +37,17 @@ public class Box<T extends Fruit> {
         return fruit;
     }
 
+    public String showName(){
+        return this.fruitList.get(0).getClass().getSimpleName();
+    }
     public void move(Box anotherBox, int quantity) {
+
+        System.out.println(anotherBox.showName());
+        System.out.println(this.showName());
+        if (!anotherBox.showName().equals(this.showName())) {
+            System.out.println("false");
+            return;
+        }
         for (int i = 0; i < quantity; i++) {
             try {
                 fruitAdd((T) anotherBox.takeFromHere());
