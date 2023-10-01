@@ -25,7 +25,7 @@ public class Box<T extends Fruit> {
         this.fruitList = fruitList;
 
     }
-    public void fruitAdd(T fruit) {
+    public void add(T fruit) {
         this.fruitList.add(fruit);
     }
 
@@ -70,7 +70,7 @@ public class Box<T extends Fruit> {
 
         for (int i = 0; i < quantity; i++) {
             try {
-                fruitAdd((T) anotherBox.takeFromHere());
+                add((T) anotherBox.takeFromHere());
             } catch (IndexOutOfBoundsException e) {
 //                System.out.println("Exception"+e.toString());
                 System.out.println("Количество пересыпанных фруктов: " + i);
