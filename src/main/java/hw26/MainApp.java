@@ -1,6 +1,6 @@
-package hw27;
+package hw26;
 
-import hw27.utils.*;
+import hw26.utils.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package hw27.utils;
+package hw26.utils;
 
 public class Orange extends Fruit {
     private double weight = 30;

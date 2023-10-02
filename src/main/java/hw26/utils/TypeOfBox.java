@@ -1,4 +1,4 @@
-package hw27.utils;
+package hw26.utils;
 
 public enum TypeOfBox {
     AppleBox, OrangeBox,  MixedBox
