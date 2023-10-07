@@ -10,7 +10,6 @@ public class Box<T extends Fruit> {
 
     private TypeOfBox typeOfBox;
 
-
     public TypeOfBox getTypeOfBox() {
         return typeOfBox;
     }
@@ -25,6 +24,7 @@ public class Box<T extends Fruit> {
         this.fruitList = fruitList;
 
     }
+
     public void add(T fruit) {
         this.fruitList.add(fruit);
     }
@@ -34,17 +34,14 @@ public class Box<T extends Fruit> {
             return 0;
         }
         double sum = 0;
-        for (Fruit  fruit :  fruitList) {
+        for (Fruit fruit : fruitList) {
             sum += fruit.getWeight();
         }
         return sum;
     }
 
     public boolean compare(Box anotherBox) {
-        if (anotherBox.weight() - this.weight() < 0.0001) {
-            return true;
-        }
-        return false;
+        return anotherBox.weight() - this.weight() < 0.0001;
     }
 
     public <T> T takeFromHere() {
@@ -52,31 +49,23 @@ public class Box<T extends Fruit> {
         return fruit;
     }
 
-    String showName(){
-        return this.fruitList.get(0).getClass().getSimpleName();
-    }
-
-    public Fruit whatClass(){
-        return this.fruitList.get(0);
-    }
-    public void move(Box anotherBox, int quantity) {
-        System.out.println("Переносим из "+anotherBox.getTypeOfBox()+ " в " + this.getTypeOfBox());
-         if (!Objects.equals(this.typeOfBox,TypeOfBox.MixedBox)) {
+    public void moveEverythingTo(Box anotherBox) {
+        System.out.println("Переносим из " + this.getTypeOfBox() + " в " + anotherBox.getTypeOfBox());
+        if (!Objects.equals(anotherBox.typeOfBox, TypeOfBox.MixedBox)) {
             if (!anotherBox.getTypeOfBox().equals(this.typeOfBox)) {
                 System.out.println("Тип ящиков разный, пересыпать не можем");
                 return;
             }
         }
-
-        for (int i = 0; i < quantity; i++) {
-            try {
-                add((T) anotherBox.takeFromHere());
-            } catch (IndexOutOfBoundsException e) {
-//                System.out.println("Exception"+e.toString());
-                System.out.println("Количество пересыпанных фруктов: " + i);
-                break;
-            }
-        }
+        anotherBox.fruitList.addAll(this.fruitList);
+        this.fruitList.clear();
     }
 
+//    public void addToThisBox( ){
+//        this.fruitList.add(<T> fruit);
+//    }
+
+    public void showType() {
+        System.out.println("Тип T: " + this.fruitList.getClass().getName());
+    }
 }
