@@ -2,27 +2,19 @@ package hw26.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Box<T extends Fruit> {
 
-    private List<T> fruitList = new ArrayList<>();
 
-    private TypeOfBox typeOfBox;
+    public List<T> fruitList = new ArrayList<>();
 
-    public TypeOfBox getTypeOfBox() {
-        return typeOfBox;
-    }
 
-    public Box(TypeOfBox typeOfBox) {
-        this.typeOfBox = typeOfBox;
+    public Box() {
     }
 
 
-    public Box(TypeOfBox typeOfBox, List<T> fruitList) {
-        this.typeOfBox = typeOfBox;
+    public Box(List<T> fruitList) {
         this.fruitList = fruitList;
-
     }
 
     public void add(T fruit) {
@@ -40,32 +32,14 @@ public class Box<T extends Fruit> {
         return sum;
     }
 
-    public boolean compare(Box anotherBox) {
+    public boolean compare(Box<?> anotherBox) {
         return anotherBox.weight() - this.weight() < 0.0001;
     }
 
-    public <T> T takeFromHere() {
-        T fruit = (T) fruitList.remove(0);
-        return fruit;
-    }
-
-    public void moveEverythingTo(Box anotherBox) {
-        System.out.println("Переносим из " + this.getTypeOfBox() + " в " + anotherBox.getTypeOfBox());
-        if (!Objects.equals(anotherBox.typeOfBox, TypeOfBox.MixedBox)) {
-            if (!anotherBox.getTypeOfBox().equals(this.typeOfBox)) {
-                System.out.println("Тип ящиков разный, пересыпать не можем");
-                return;
-            }
-        }
+    public void moveAllTo(Box<? super T> anotherBox) {
+        System.out.println("Переносим из ящика в ящик");
         anotherBox.fruitList.addAll(this.fruitList);
         this.fruitList.clear();
     }
 
-//    public void addToThisBox( ){
-//        this.fruitList.add(<T> fruit);
-//    }
-
-    public void showType() {
-        System.out.println("Тип T: " + this.fruitList.getClass().getName());
-    }
 }
