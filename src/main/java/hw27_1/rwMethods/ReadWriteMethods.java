@@ -47,7 +47,7 @@ public class ReadWriteMethods {
                 line = reader.readLine();
             }
             reader.close();
-            System.out.println("matches="+matches);
+            System.out.println("Найдено соответствий: "+matches);
 
             System.out.println();
         } catch (

@@ -25,7 +25,6 @@ public class MainApp {
         System.out.println("Введите последовательность символов, которые вы хотите найти и подсчитать их количество (например \"журнал\")");
         String symbolsToFindAndCount = sc.nextLine();
 
-        System.out.println("Показываем содержимое файла " + fileToReadString + " в консоли:");
         File fileToReadWrite = new File(fileToReadString);
         try {
             ReadWriteMethods.findPattern(fileToReadWrite, symbolsToFindAndCount);
