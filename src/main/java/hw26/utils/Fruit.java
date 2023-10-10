@@ -1,8 +1,5 @@
 package hw26.utils;
 
-public  class Fruit {
-
-    public double getWeight() {
-        return 0;
-    }
+public abstract class Fruit {
+    abstract double getWeight();
 }
