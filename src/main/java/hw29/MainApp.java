@@ -1,64 +1,72 @@
 package hw29;
 
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainApp {
-        private static Counter counter = new Counter();
+    private static Counter counter = new Counter();
     private static final Object mon = new Object();
 
-    private static int cntr[] = new int[3];
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        cntr[0] = 0;
-        ExecutorService service = Executors.newFixedThreadPool(2);
-
-        for (int i = 0; i < 10; i++) {
+        ExecutorService service = Executors.newFixedThreadPool(3);
+        for (int i = 0; i < 5; i++) {
+             counter.value = 1;
             service.execute(() -> {
                         synchronized (mon) {
-//                            while (counter.value != 0) {
-                            while (cntr[0] == 1) {
+                            while (counter.getValue() != 1) {
                                 try {
                                     mon.wait();
                                 } catch (InterruptedException e) {
+                                    System.out.printf("A InterruptedException");
                                     throw new RuntimeException(e);
                                 }
                             }
+//                            System.out.println("A "+ counter.value);
                             System.out.println("A");
-//                            counter.inc();
-                            cntr[0] = 1;
-                            mon.notifyAll();
 
+                            counter.setValue(2);
+                            mon.notifyAll();
                         }
 
                     }
             );
             service.execute(() -> {
                         synchronized (mon) {
-//                            while (counter.value != 1) {
-                            while (cntr[0] == 0) {
-
+                            while (counter.getValue() != 2) {
                                 try {
                                     mon.wait();
                                 } catch (InterruptedException e) {
+                                    System.out.printf("B InterruptedException");
                                     throw new RuntimeException(e);
                                 }
                             }
+//                            System.out.println("B "+ counter.value);
                             System.out.println("B");
-//                            counter.dec();
-                            cntr[0] = 0;
+                            counter.setValue(3);
                             mon.notifyAll();
 
                         }
                     }
             );
-//            service.execute(() -> {
-//                        System.out.println("C");
-//                    }
-//            );
-
+            service.execute(() -> {
+                        synchronized (mon) {
+                            while (counter.getValue() != 3) {
+                                try {
+                                    mon.wait();
+                                } catch (InterruptedException e) {
+                                    System.out.printf("C InterruptedException");
+                                    throw new RuntimeException(e);
+                                }
+                            }
+//                            System.out.println("C " + counter.value);
+                            System.out.println("C");
+                            counter.setValue(1);
+                            mon.notifyAll();
+                        }
+                    }
+            );
         }
         service.shutdown();
     }
