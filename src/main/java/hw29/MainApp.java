@@ -1,75 +1,63 @@
 package hw29;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainApp {
-    private static Counter counter = new Counter();
+    private static final Counter counter = new Counter();
     private static final Object mon = new Object();
 
-
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args)  {
         ExecutorService service = Executors.newFixedThreadPool(3);
-        for (int i = 0; i < 5; i++) {
-             counter.value = 1;
-            service.execute(() -> {
-                        synchronized (mon) {
-                            while (counter.getValue() != 1) {
-                                try {
-                                    mon.wait();
-                                } catch (InterruptedException e) {
-                                    System.out.printf("A InterruptedException");
-                                    throw new RuntimeException(e);
-                                }
-                            }
-//                            System.out.println("A "+ counter.value);
-                            System.out.println("A");
-
-                            counter.setValue(2);
-                            mon.notifyAll();
+        counter.setValue(1);
+        service.execute(() -> {
+            synchronized (mon) {
+                try {
+                    for (int i = 0; i < 5; i++) {
+                        while (counter.getValue() != 1) {
+                            mon.wait();
                         }
-
+                        counter.setValue(2);
+                        System.out.print("A");
+                        mon.notifyAll();
                     }
-            );
-            service.execute(() -> {
-                        synchronized (mon) {
-                            while (counter.getValue() != 2) {
-                                try {
-                                    mon.wait();
-                                } catch (InterruptedException e) {
-                                    System.out.printf("B InterruptedException");
-                                    throw new RuntimeException(e);
-                                }
-                            }
-//                            System.out.println("B "+ counter.value);
-                            System.out.println("B");
-                            counter.setValue(3);
-                            mon.notifyAll();
-
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        service.execute(() -> {
+            synchronized (mon) {
+                try {
+                    for (int i = 0; i < 5; i++) {
+                        while (counter.getValue() != 2) {
+                            mon.wait();
                         }
+                        counter.setValue(3);
+                        System.out.print("B");
+                        mon.notifyAll();
                     }
-            );
-            service.execute(() -> {
-                        synchronized (mon) {
-                            while (counter.getValue() != 3) {
-                                try {
-                                    mon.wait();
-                                } catch (InterruptedException e) {
-                                    System.out.printf("C InterruptedException");
-                                    throw new RuntimeException(e);
-                                }
-                            }
-//                            System.out.println("C " + counter.value);
-                            System.out.println("C");
-                            counter.setValue(1);
-                            mon.notifyAll();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        service.execute(() -> {
+            synchronized (mon) {
+                try {
+                    for (int i = 0; i < 5; i++) {
+                        while (counter.getValue() != 3) {
+                            mon.wait();
                         }
+                        counter.setValue(1);
+                        System.out.print("C");
+                        mon.notifyAll();
                     }
-            );
-        }
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         service.shutdown();
     }
-
-
 }
