@@ -1,7 +1,7 @@
-package hw27;
+package main.java.hw27_1;
 
 
-import hw27.rwMethods.ReadWriteMethods;
+import main.java.hw27_1.rwMethods.ReadWriteMethods;
 
 import java.io.*;
 import java.io.FileNotFoundException;
@@ -18,6 +18,7 @@ public class MainApp {
             System.out.println(fileName.getPath());
         }
 
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите имя файла из этого списка, который вы хотите прочитать:");
         String fileToReadString = sc.nextLine();
@@ -27,7 +28,7 @@ public class MainApp {
 
         File fileToReadWrite = new File(fileToReadString);
         try {
-            ReadWriteMethods.findPattern(fileToReadWrite, symbolsToFindAndCount);
+            System.out.println("Найдено соответствий: " + ReadWriteMethods.findPattern(fileToReadWrite, symbolsToFindAndCount));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             sc.close();

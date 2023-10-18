@@ -1,4 +1,4 @@
-package hw27.rwMethods;
+package main.java.hw27_1.rwMethods;
 
 
 import java.io.*;
@@ -23,37 +23,41 @@ public class ReadWriteMethods {
     }
 
     public static List<File> textFilesList(File path) {
+        fileList.clear();
         searchFiles(path);
         return fileList;
     }
 
-    public static void findPattern(File file, String patternString) throws IOException {
+    public static int findPattern(File file, String patternString) throws IOException {
         if (!file.exists()) {
             throw new FileNotFoundException("Файл не найден");
         }
         Pattern pattern = Pattern.compile(patternString);
 
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(file.getPath()));
+        int matches = 0;
+
+//        BufferedReader reader;
+        try (BufferedReader reader = new BufferedReader(new FileReader(file.getPath()))) {
+
             String line = reader.readLine();
-            int matches = 0;
+
             while (line != null) {
                 Matcher matcher = pattern.matcher(line);
-                while (matcher.find()){
+                while (matcher.find()) {
                     matches++;
                 }
 //                System.out.println(line);
                 line = reader.readLine();
             }
-            reader.close();
-            System.out.println("Найдено соответствий: "+matches);
+//            reader.close();
+            return matches;
 
-            System.out.println();
+
         } catch (
                 java.io.IOException e) {
             e.printStackTrace();
         }
+        return matches;
     }
 
 }
